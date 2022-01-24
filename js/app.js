@@ -292,11 +292,11 @@ class Cryptoquote {
             // added the variable action to prevent solveLetter from running after buyLetter
             this.action = "buy";
             this.confirmAction.disabled = false;
-            letterDisplay.innerText = '';
-            valueDisplay.innerText = '';
-            countDisplay.innerText = '';
-            totalDisplay.innerText = '';
-            countDisplay.style.fontSize = "36px";
+            this.letterDisplay.innerText = '';
+            this.valueDisplay.innerText = '';
+            this.countDisplay.innerText = '';
+            this.totalDisplay.innerText = '';
+            this.countDisplay.style.fontSize = "36px";
             this.confirmAction.innerText = 'Choose a letter';
     
             // call the choose letter method; this letter will be used in multiple methods
@@ -682,7 +682,7 @@ class Cryptoquote {
 
 // -----------------------------Code below this line is outside the class and may need to be moved, modified, or deleled
 // set initial score
-scoreDisplay.innerText = this.score;
+this.scoreDisplay.innerText = this.score;
  
 let newton1 = 'If I have seen further it is by standing on the shoulders of Giants.';
 // console.log(newton1);
