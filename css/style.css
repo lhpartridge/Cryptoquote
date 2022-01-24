@@ -1,0 +1,268 @@
+/*Cryptoquote Game
+Lorraine Hall Partridge
+Class project for the Mississippi Coding Academies 2021*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    scroll-behavior: smooth;
+    background-color: black;
+}
+
+header {
+    background-color: rgb(23, 74, 102);
+}
+
+h1, h2, h3 {
+    color: rgb(238, 218, 129);
+    font-size: 36px;
+}
+
+h1 {
+    font-size: 108px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: block;
+    text-align: center;
+}
+
+
+.top-header {
+    position: relative;
+    max-height: 40vh;
+    padding: 20px;
+}
+
+#gameName {
+    color: rgb(238, 218, 129);
+    margin: 10px;
+}
+
+.rules-div {
+    position: absolute;
+    right: 0;
+    max-width: 20vw;
+    padding: 10px;
+    font-size: 1px;
+    color: transparent;
+}
+.rules {
+    font-size: 20px; 
+}
+
+.rules-subheader {
+    position: absolute;
+    right: 10px;
+    color:rgb(126, 123, 124);
+    font-size: 24px;
+}
+
+.rules-div:hover {
+    display: block;
+    font-size: 24px;
+    color: black;
+    background-color: rgb(185, 174, 174);
+}
+
+
+.game-div {
+    position: absolute;
+    right: 0px;
+}
+
+main {
+    background-color: black;
+    color: yellow;
+    /*
+    display: grid;
+      grid-template-columns: repeat(2, 1fr);
+  align-items: end;
+  grid-auto-rows: 200px;
+  gap: 20px;*/
+}
+
+section {
+    padding: 20px;
+}
+
+.gameboard {
+    position: relative;
+    border: 2px solid pink;
+}
+
+.scoreboard {
+    border: 2px solid orange;
+}
+
+.quotation-div {
+
+}
+
+.quotation {
+    display: block;
+    background-color: rgb(10, 52, 77);
+    border: 2px solid white;
+}
+
+
+
+.quotation-text {
+    text-transform: uppercase;
+    background-color: rgb(245, 247, 248);
+    color: rgb(10, 52, 77);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 3px, 8px;
+    padding: 3px;
+    text-decoration: underline;
+    text-decoration-color: rgb(10, 52, 77);/*set initial underline color; change to background color when the letter is solved*/
+    letter-spacing: .8em;
+}
+
+.quotation-solution {
+    text-transform: uppercase;
+    color: rgb(238, 218, 129);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    font-size: 36px;
+    font-family:sans-serif;
+}
+
+/* 
+.quotation-text {
+    text-transform: uppercase;
+    background-color: rgb(10, 52, 77);
+    color:rgb(245, 247, 248);
+    font-size: 36px;
+    font-weight: 600;
+    margin: 3px, 8px;
+    padding: 3px;
+    text-decoration: underline;
+    text-decoration-color: rgb(10, 52, 77);/*set initial underline color; change to background color when the letter is solved*/
+    /* letter-spacing: .8em;
+}
+
+.quotation-solution {
+    text-transform: uppercase;
+    color: rgb(238, 218, 129);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    font-size: 36px;
+    font-family:sans-serif;
+}
+ */ */
+
+.alphabet {
+    background: white;
+}
+
+.alphabet-column {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    margin: 5px auto;
+    padding-top: 20px;
+    width: 150px;
+    height: 1100px;
+    /* align-content: center; */
+    /* justify-content: space-around; */
+    background-color: rgb(219, 229, 251);
+    /* border: 2px solid blue; */
+}
+
+/* .alphabet-grid > button {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    align-content: center;
+    justify-content: center;
+    background-color: paleturquoise;
+    color:black;
+    opacity: .75;
+    border: 1px solid white;
+    outline: none;
+} */
+
+.alphabet-grid > button {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 550;
+    width: 32px;
+    height: 32px;
+    margin: 5px auto;
+    padding: 3px;
+    border-radius: 5px;
+    align-content: center;
+    justify-content: center;
+    /* background-color: rgb(211, 209, 201); */
+    background-color: #eccd59;
+    color:rgb(77,0 0);
+    opacity: .75;
+    border: 1px solid white;
+    box-shadow: inset 3px  rgb(27, 21, 3);
+    outline: none;
+}
+
+.alphabet-grid {
+    position:absolute;
+    display: grid;
+    /* margin: 0 auto; */
+    /* justify-content: space-around; */
+    /* align-content: center; */
+    /* background-color: black; */
+    color: black;
+    grid-template-columns: 36px;
+    grid-template-rows: repeat(26, 40px);
+}
+
+.alphabet-grid-constant, .alphabet-grid-solution {
+    /* position: absolute; */
+        /* justify-content: space-around; */
+    /* align-content: center; */
+    font-family: monospace;
+    color: transparent;
+    font-family: monospace;
+    
+}
+
+.alphabet-grid-constant {
+    right: 80px;
+    text-decoration: none;
+    text-decoration-color: black;
+    text-underline-offset: 3px;
+    /* border: 2px solid green; */
+}
+
+.alphabet-grid-solution {
+    right:30px;
+    text-decoration: none;
+    /* border: 2px solid yellow; */
+}
+
+.pink {
+    color: pink;
+}
+.player {
+    background-color: orangered;
+}
+
+.points {
+    background-color: blue;
+}
+
+.bonus {
+    background-color: purple;
+}
+
+.results {
+    
+}
+
+footer {
+    background-color: black;
+    min-height: 60px;
+}

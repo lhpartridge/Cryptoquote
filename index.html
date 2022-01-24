@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--Cryptoquote Game
+Lorraine Hall Partridge
+Class project for the Mississippi Coding Academies 2021 -->
+
+<!--The header will include the title of the page and a set of links to contact info, etc.
+
+The main header will include the rules of the game in a hover over the Rules keyword
+-->
+
+<!--The main part of the page will display a game board with the following elements:
+
+    a quotation display area which has a blank for each cipher character in a quotation and a corresponding area for the letters that have been revealed
+
+    an alphabet display area which has the letters of the alphabet displayed with their cipher character concealed until revealed
+
+    a player display area which contains the players names and chosen icons
+    
+    a points display area for one or two players which has the running total of points for each player
+
+    a bonus display area which has a question about the author or the work from which the quotation comes
+
+    a winner section which displays an animation when the game is over
+-->
+
+<!--The footer will contain the links to the game developer, a like button that sends a message to the developer and increments the likes on the page, a link to the Mississippi Coding Academies and the colophon-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cryptoquote</title>
+</head>
+<body>
+    <header>
+        <!--The header will include the title of the page and a set of links to contact info, etc.
+
+        The main header will include the rules of the game in a hover over the Rules keyword
+        -->
+        <section class="top-header">
+            <h3 class="rules-subheader">Rules</h3>
+            <div class="rules-div">
+                <div class="rules">
+                    <p>Cryptoquote uses a substitution cipher that changes each letter of the alphabet to a different letter or other symbol.  </p>
+                    <p>Each letter gets a point value that the player pays to reveal the letter.  </p>
+                    <p>Players start with 500 points.  When they select a letter, they pay a set amount for the letter choice multiplied by the number of times the letter is used in the quotation.</p>
+                    <p>If the player solves the cryptoquote, the value of all the remaining letters in the quotation is credited to the score.  If the player spends all the points before solving the cryptoquote, it is a loss.</p>
+                    <p>A bonus question will be offered after a successful constant that adds 100 points to the score.</p>
+                </div>
+            </div>
+        </section>
+        
+        <h1 id="gameName">Cryptoquote</h1>
+
+
+
+        <!-- <div class="game-div">
+            <h2>Solve the cipher to reveal the quotation.  </h2>
+            <h2>Bonus!  Name the source!</h2>
+            <h2>Genius level!  Solve a symbol cipher!</h2>
+        </div> -->
+
+    </header>
+    <main>
+        <!--The main part of the page will display a game board with the following elements:
+
+            a quotation display area 
+            an alphabet display area 
+            a player display area    
+            a points display area 
+            a bonus display area 
+            a results
+-->
+        <section class="quotation">
+            <!--a quotation display area which has a blank for each cipher character in a quotation and a corresponding area for the letters that have been revealed-->
+            <h4>quotation display</h4>
+
+            <!--The max number of characters in the display should be 30 -36 or the breaks should be hard coded in the objects as sub-arrays-->
+            <div class="quotation-div">
+                <p class="text quotation-text">Th_s above all: </p>
+                <p class="text quotation-text quotation-constant">Jw<span class="pink">q</span>s qnxml qzz:</p>
+
+                <p class="text quotation-text">to th_ne own self be true,</p>
+                <p class="text quotation-text quotation-constant">jx jw<span class="pink">q</span>kl xwk hlla nl jefl,</p>
+
+                <p class="text quotation-text">And _t must follow,</p>
+                <p class="text quotation-text quotation-constant">Akd <span class="pink">q</span>j cfhj axzzxg,</p>  
+
+                <p class="text quotation-text">as the n_ght the day,</p>
+                <p class="text quotation-text quotation-constant">qs jwl k<span class="pink">q</span>iwt jwl yqs,</p>  
+                
+                <p class="text quotation-text">Thou canst not then</p>
+                <p class="text quotation-text quotation-constant">Jwxf rqkhj kxj jwlk</p>
+                
+                <p class="text quotation-text">be false to any man.</p>
+                <p class="text quotation-text quotation-constant">nl aqzhl jx aks cqk.</p>
+                                        
+                        
+            </div>
+        </section>
+        
+        <section class="gameboard" id="gameboard">
+            <div class="player">
+                <!--    a player display area which contains the players names and chosen icons-->
+                <h4>player display</h4>
+            </div>
+            <div class="alphabet" id="alphabet">
+                <!--    a vertical display area for the alphabets which has the letters of the alphabet displayed with their cipher character concealed until revealed-->
+                <!-- <h4>alphabet display</h4> -->
+                <div class="alphabet-column"> 
+                    <!--The alphabet column holds two vertical columns:  the constant will be a button for the letters of ALPHABET and the solution will be a tile for the CIPHERALPHABET set to d-none until it is solved-->
+                    <div class="alphabet-grid alphabet-grid-constant">
+                        <button class="letter constant" id="A">A</button>
+                        <button class="letter constant" id="B">B</button>
+                        <button class="letter constant" id="C">C</button>
+                        <button class="letter constant" id="D">D</button>
+                        <button class="letter constant" id="E">E</button>
+                        <button class="letter constant" id="F">F</button>
+                        <button class="letter constant" id="G">G</button>
+                        <button class="letter constant" id="H">H</button>
+                        <button class="letter constant" id="I">I</button>
+                        <button class="letter constant" id="J">J</button>
+                        <button class="letter constant" id="K">K</button>
+                        <button class="letter constant" id="L">L</button>
+                        <button class="letter constant" id="M">M</button>
+                        <button class="letter constant" id="N">N</button>
+                        <button class="letter constant" id="O">O</button>
+                        <button class="letter constant" id="P">P</button>
+                        <button class="letter constant" id="Q">Q</button>
+                        <button class="letter constant" id="R">R</button>
+                        <button class="letter constant" id="S">S</button>
+                        <button class="letter constant" id="T">T</button>
+                        <button class="letter constant" id="U">Y</button>
+                        <button class="letter constant" id="V">V</button>
+                        <button class="letter constant" id="W">W</button>
+                        <button class="letter constant" id="X">X</button>
+                        <button class="letter constant" id="Y">Y</button>
+                        <button class="letter constant" id="Z">Z</button>
+                    </div>
+                    <div class="alphabet-grid alphabet-grid-solution">
+                        <button class="letter solution" id="a">u</button>
+                        <button class="letter solution" id="b">n</button>
+                        <button class="letter solution" id="c">r</button>
+                        <button class="letter solution" id="d">y</button>
+                        <button class="letter solution" id="e">l</button>
+                        <button class="letter solution" id="f">a</button>
+                        <button class="letter solution" id="g">i</button>
+                        <button class="letter solution" id="h">w</button>
+                        <button class="letter solution" id="i">q</button>
+                        <button class="letter solution" id="j">b</button>
+                        <button class="letter solution" id="k">o</button>
+                        <button class="letter solution" id="l">z</button>
+                        <button class="letter solution" id="m">c</button>
+                        <button class="letter solution" id="n">k</button>
+                        <button class="letter solution" id="o">x</button>
+                        <button class="letter solution" id="p">d</button>
+                        <button class="letter solution" id="q">v</button>
+                        <button class="letter solution" id="r">e</button>
+                        <button class="letter solution" id="s">h</button>
+                        <button class="letter solution" id="t">j</button>
+                        <button class="letter solution" id="u">f</button>
+                        <button class="letter solution" id="v">m</button>
+                        <button class="letter solution" id="w">g</button>
+                        <button class="letter solution" id="x">p</button>
+                        <button class="letter solution" id="y">s</button>
+                        <button class="letter solution" id="z">t</button>
+                    </div> 
+                </div><!--end of alphabet-column container-->
+            </div><!--end of alphabet div-->
+
+            </div><!--end of gameboard div-->
+            <!-- 
+                <p class="text alphabet-text">8 2 3 4 12 2 1 6 8 1 1 4 3 8 8 1 1 6 8 9 3 1 2 1 2 1</p>
+                <p class="text alphabet-text">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+                <p class="text alphabet-text alphabet-constant">u n r y l a i w q b o z c k x d v e h j f m g p s t</p>-->
+        </section><!--end of gaemboard section-->
+            <section class="scoreboard" id="scoreboard"> 
+                <div class="points">
+                    <!--    a points display area for one or two players which has the running total of points for each player-->
+                    <h4>points display</h4>
+                </div><!--end of points-->
+                <div class="bonus">
+                    <!--    a bonus display area which has a question about the author or the work from which the quotation comes-->
+                    <h4>bonus display</h4>
+                </div><!--end of bonus div-->
+                <div class="results">
+                    <!--    a results section which displays an animation when the game is over-->
+                    <h4>results display</h4>
+                </div><!--end of results div-->
+            </section><!--end of scoreboard section-->
+    </main>
+    <footer>
+
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

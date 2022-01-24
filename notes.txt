@@ -1,0 +1,56 @@
+Cryptoquote game
+
+A player will choose from one of the categories (number to be determined) and
+
+CLICK the button linked to the
+
+RANDOM number generator to choose the quotation from the appropriate 
+
+ARRAY of quotations in that category.  The quotation will 
+
+DISPLAY on the game board 
+
+WEBPAGE as a whirl
+
+ANIMATION DISPLAY of letters that go around
+
+ROTATION like a spinner before each letter in the quotation appears and stands still.  
+
+AUDIO There will be a twinkling sound and the 
+
+ARRAY letters of the alphabet will 
+
+DISPLAY  with blanks for the letters in the quotation, but with the letters that are NOT used in the quotation provided for the contestant.  The goal is to complete the alphabet by recognizing the quotation before risking too many points.
+
+Scoring will be similar to darts.  Players will start with VARIABLES 500 POINTS.  They will risk various numbers of points according to their FREQUENCY (as in Scrabble).  The goal is to keep a high score by solving the cryptoquote without running out of points.  Points will be INCREMENT earned rather than spent by solving a letter correctly and DECREMENT lost when the solution fails.  A BONUS will be awarded for knowing the source of the quotation, with the current contestant getting the first turn.  It’s possible that I will design the game to allow a successful solver to keep control of the game (as in Jeopardy!). 
+
+The DISPLAY will show the running total of 
+
+POINTS for each player, the 
+ARRAY quotation and the 
+ARRAY solution with the blanks filled in as we go, and the
+ARRAY alphabet solution grid.
+
+
+Genius level:
+Rather than using the Roman alphabet, various symbols or invented characters will be used.  Everything else will remain the same.
+
+
+Components
+Databases:
+	Array of quotations, author, and category
+	Array of symbols 
+
+Functions:
+	Select quotation using a random number generator given the category
+Generate substitution cipher using random number generator
+	Display the quotation using blanks for each letter
+	Display the alphabet with unused letters and blanks for letters used in the quotation
+	Receive a request for a letter 
+	Display each instance of the letter 
+	Display the total points held by the player
+	Add or deduct points according to the results of the player’s move
+	Change player
+	
+
+
