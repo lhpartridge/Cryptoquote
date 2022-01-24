@@ -1,268 +1,455 @@
-/*Cryptoquote Game
-Lorraine Hall Partridge
-Class project for the Mississippi Coding Academies 2021*/
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
+ 
 
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     scroll-behavior: smooth;
-    background-color: black;
+    background-color: var(--footerColor);
+}
+ 
+/* :root {
+    --bgColor: #cad6d6; 
+    --footerColor: #314962;
+    --quotationDisplayColor: #cad6d6;
+    --textColor1: #035303;
+    --textColor2: #5d331b;
+    --headerFont: Georgia;
+    --quotationFont: 'Segoe UI';
+} */
+
+.figure {
+    border: 2px solid red;
+    font-family: var(--headerFont);
+    color: var(--footerColor);
 }
 
+#brown {
+    border: 2px solid greenyellow;
+}
+
+figcaption {
+    /* border: 2px solid blue; */
+}
+
+
+ 
+:root {
+    --bgColor: #b9ad91;
+    --footerColor: #382f13;
+    --quotationDisplayColor: #f0ede7;
+    --textColor1: #024402;
+    --textColor2: #a33f26;
+    --headerFont: Georgia;
+    /* --quotationFont: 'Segoe UI'; */
+    --quotationFont: monospace;
+}
+
+
+ 
 header {
-    background-color: rgb(23, 74, 102);
+    background-color: var(--bgColor);
 }
 
-h1, h2, h3 {
-    color: rgb(238, 218, 129);
-    font-size: 36px;
+main {
+    height: auto;
+    /* min-height: 60vh; */
+    background-color: var(--bgColor);
 }
-
+ 
 h1 {
-    font-size: 108px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    display: block;
-    text-align: center;
+    font-size: 150px;
+    font-family: var(--headerFont);
+    font-weight: 600;
+    color: var(--footerColor);
+    text-align: center;    
+    text-transform: capitalize;
 }
-
-
-.top-header {
-    position: relative;
-    max-height: 40vh;
-    padding: 20px;
-}
-
-#gameName {
-    color: rgb(238, 218, 129);
-    margin: 10px;
-}
-
+ 
 .rules-div {
     position: absolute;
-    right: 0;
-    max-width: 20vw;
+    top:20px;
+    left: 10px;
+    /* left: 20px;
+    max-width: 33vw; */
+    max-width: 25vw;
+    max-height: 400px;
     padding: 10px;
     font-size: 1px;
     color: transparent;
 }
+ 
 .rules {
-    font-size: 20px; 
-}
-
-.rules-subheader {
-    position: absolute;
-    right: 10px;
-    color:rgb(126, 123, 124);
-    font-size: 24px;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .rules-div:hover {
     display: block;
-    font-size: 24px;
+    padding: 10px;
+    font-size: 20px;
     color: black;
     background-color: rgb(185, 174, 174);
+    overflow-y: auto;
 }
-
-
-.game-div {
-    position: absolute;
-    right: 0px;
+ 
+.subheaders {
+    margin-top: 20px;
+    justify-content: space-between;
+    width: 100%;
 }
-
-main {
-    background-color: black;
-    color: yellow;
-    /*
-    display: grid;
-      grid-template-columns: repeat(2, 1fr);
-  align-items: end;
-  grid-auto-rows: 200px;
-  gap: 20px;*/
+ 
+.subheader {
+    /* position: absolute;
+    right: 10px; */
+    color: var(--textColor1);
+    font-size: 28px;
+    text-align: center;
 }
-
-section {
-    padding: 20px;
+ 
+ 
+#gameboardContainer {
+    /* background-color: turquoise; */
 }
-
-.gameboard {
-    position: relative;
-    border: 2px solid pink;
-}
-
+ 
 .scoreboard {
-    border: 2px solid orange;
+    /* position: absolute;
+    top: 0;
+    right: 0vw; */
+    /* width: 300px; */
+    /* height: 1000px; */
+    /* height: auto; */
+    align-content: center;
+    background-color: var(--textColor1);
 }
-
-.quotation-div {
-
-}
-
-.quotation {
-    display: block;
-    background-color: rgb(10, 52, 77);
-    border: 2px solid white;
-}
-
-
-
-.quotation-text {
-    text-transform: uppercase;
-    background-color: rgb(245, 247, 248);
-    color: rgb(10, 52, 77);
-    font-size: 32px;
-    font-weight: 600;
-    margin: 3px, 8px;
-    padding: 3px;
-    text-decoration: underline;
-    text-decoration-color: rgb(10, 52, 77);/*set initial underline color; change to background color when the letter is solved*/
-    letter-spacing: .8em;
-}
-
-.quotation-solution {
-    text-transform: uppercase;
-    color: rgb(238, 218, 129);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    font-size: 36px;
-    font-family:sans-serif;
-}
-
-/* 
-.quotation-text {
-    text-transform: uppercase;
-    background-color: rgb(10, 52, 77);
-    color:rgb(245, 247, 248);
-    font-size: 36px;
-    font-weight: 600;
-    margin: 3px, 8px;
-    padding: 3px;
-    text-decoration: underline;
-    text-decoration-color: rgb(10, 52, 77);/*set initial underline color; change to background color when the letter is solved*/
-    /* letter-spacing: .8em;
-}
-
-.quotation-solution {
-    text-transform: uppercase;
-    color: rgb(238, 218, 129);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    font-size: 36px;
-    font-family:sans-serif;
-}
- */ */
-
-.alphabet {
-    background: white;
-}
-
-.alphabet-column {
-    position: absolute;
-    top: 100px;
-    right: 0;
-    margin: 5px auto;
-    padding-top: 20px;
+ 
+ 
+.scoreboard-block {
+    /* width: 10vw; */
+    /* max-width: 200px; */
+    /* height: 18vh; */
+    /* max-height: 150px; */
     width: 150px;
-    height: 1100px;
-    /* align-content: center; */
-    /* justify-content: space-around; */
-    background-color: rgb(219, 229, 251);
-    /* border: 2px solid blue; */
-}
-
-/* .alphabet-grid > button {
+    height: 120px;
+    margin: 10px auto;
+    padding: 5px;
+    text-align: center;
     text-transform: uppercase;
-    font-family: sans-serif;
-    font-size: 20px;
-    width: 28px;
-    height: 28px;
-    align-content: center;
-    justify-content: center;
-    background-color: paleturquoise;
-    color:black;
-    opacity: .75;
-    border: 1px solid white;
-    outline: none;
-} */
-
-.alphabet-grid > button {
+    font-size: 36px;
+    color: var(--quotationDisplayColor);
+    border: 4px solid var(--textColor2);
+}
+ 
+ 
+.score-header {
+    color: var(--quotationDisplayColor);
+}
+ 
+.quotation-display {
+    position: relative;
+    /* width: 1650px; */
+    /* height: auto;*/
+    margin: 20px auto;
+    padding: 12px;
+    background-color: var(--quotationDisplayColor);
+    font-size: 32px;
+    font-family: var(--quotationFont);
     text-transform: uppercase;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: 550;
-    width: 32px;
-    height: 32px;
-    margin: 5px auto;
-    padding: 3px;
-    border-radius: 5px;
-    align-content: center;
-    justify-content: center;
-    /* background-color: rgb(211, 209, 201); */
-    background-color: #eccd59;
-    color:rgb(77,0 0);
-    opacity: .75;
-    border: 1px solid white;
-    box-shadow: inset 3px  rgb(27, 21, 3);
-    outline: none;
-}
+    border-radius: 10px;
+} 
 
-.alphabet-grid {
-    position:absolute;
-    display: grid;
-    /* margin: 0 auto; */
-    /* justify-content: space-around; */
-    /* align-content: center; */
-    /* background-color: black; */
-    color: black;
-    grid-template-columns: 36px;
-    grid-template-rows: repeat(26, 40px);
+#quotationDisplay {
+    position: relative;
+    /* width: 1650px; */
+    height: auto;
+    margin: 20px auto;
+    padding: 12px;
+    background-color: var(--quotationDisplayColor);
+    font-size: 32px;
+    font-family: var(--quotationFont);
+    text-transform: uppercase;
+    /* border: 2px solid red; */
+    border-radius: 10px;
 }
-
-.alphabet-grid-constant, .alphabet-grid-solution {
-    /* position: absolute; */
-        /* justify-content: space-around; */
-    /* align-content: center; */
-    font-family: monospace;
-    color: transparent;
-    font-family: monospace;
-    
+ 
+#homeQuotation {
+    width:  520px;
+    height: auto;
+    margin-bottom: 20px;
+    /* border: 2px solid red; */
 }
-
-.alphabet-grid-constant {
-    right: 80px;
-    text-decoration: none;
-    text-decoration-color: black;
-    text-underline-offset: 3px;
+ 
+#homeCipherQuote {
+    width: 500px;
     /* border: 2px solid green; */
 }
+ 
+#quotation {
+    /* width: 460px;  */
+    /* color: var(--textColor1); */
+    /* color: red; */
+    /* text-decoration: underline;
+    text-decoration-color: var(--footerColor);
+    text-underline-offset: 3px; */
+}
 
-.alphabet-grid-solution {
-    right:30px;
-    text-decoration: none;
+#description, #quotationSolution {
+    width: 80%;
+    font-size: 42px;
+    font-family: var(--headerFont);
+    text-transform: none;
+    color: var(--footerColor)
+}
+
+#quotationSolution {
+    color: var(--textColor1);
+}
+ 
+.cipherQuote {
+    /* color: var(--textColor2); */
+}
+ 
+.portrait {
+    width: 200px;
+    height: 250px;
+    padding: 20px;
+    font-size: 24px;
+    /* border: 2 px solid blue; */
+    border-radius: 50%;
+}
+
+.portrait-group {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: auto;
+    /* border: 2px solid purple; */
+}
+
+#solutionPortrait {
+    width: 240px;
+    height: 300px;
+}
+ 
+.portrait-text {
+    color: var(--footerColor);
+    text-align: center;
+    font-size: 24px;
+    font-family: var(--headerFont);
+    text-transform: capitalize;
     /* border: 2px solid yellow; */
 }
-
-.pink {
-    color: pink;
+ 
+.message-text {
+    font-size: 32px;
+    font-family: var(--headerFont);
+    font-weight: 600;
+    color: var(--textColor2);
 }
-.player {
-    background-color: orangered;
+ 
+#homeMessage {
+    /* position: relative; */
+    /* left: 10px; */
+    width: 400px;
+    height: 340px;
+    margin: 20px;
+    margin-right: -50px;
+    padding: 12px;
+    background-color: var(--quotationDisplayColor);
+    border-radius: 10px;
+}
+ 
+footer {
+    position: relative;
+    /* position: absolute;  */
+    /* bottom: 0; */
+    /* top: 1000px; */
+    /* height: auto; */
+    /* height: 400px; */
+    /* min-height: 10vh; */
+    /* justify-content: center; */
+    background-color: var(--footerColor);
 }
 
-.points {
-    background-color: blue;
+.button-group {
+    padding: 20px 0;
+    align-content: center;
+    justify-content: space-between;
+    /* border: 2px solid yellow; */
+}
+ 
+/*Level Button group*/
+#chooseLevel, #yourLevel {
+    margin: 0 auto;
+    padding: 20px;
+    font-family: var(--quotationFont);
+    font-size: 56px;
+    color: var(--quotationDisplayColor);
+    text-align: center;
+}
+ 
+.level-button {
+    width: 320px;
+    height: 80px;
+    font-size: 36px;
+    text-transform: capitalize;
+    background-color: var(--quotationDisplayColor);
+    color: white;
+    background-color: var(--textColor2);
+    border-radius: 10px;
+}
+ 
+#chooseCategory, #yourCategory, #authorSubheader, #bonusSubheader {
+    margin: 0 auto;
+    padding: 20px;
+    font-family: var(--quotationFont);
+    font-size: 48px;
+    color: var(--quotationDisplayColor);
+    text-align: center;
+}
+ 
+.category-button, .author-button {
+    margin: 5px;
+    width: 320px;
+    height: 200px;
+    font-size: 42px;
+    text-transform: capitalize;
+    background-color: var(--textColor2);
+    color: white;
+    border: 4px solid var(--textColor2);
+    border-radius: 10px;
+}
+ 
+.start-subheader {
+    text-align: left;
+    font-size: 48px;
+    color: white;
+}
+ 
+.start-buttons-group {
+    margin: 20px auto;
+}
+ 
+.start-button, .confirm-button, .action-button, .restart-button, #actionMessage {
+    margin: 5px;
+    width: 320px;
+    height: 70px;
+    align-items: center;
+    font-size: 32px;
+    text-transform: capitalize;
+    justify-content: space-around;
+    background-color: var(--textColor2);
+    color: white;
+    border-radius: 10px;
+}
+ 
+.action-group {
+    /* border: 2px solid green; */
+}
+ 
+#alphabetGroup {
+    height: 100px;
+    margin: 20px;
+    padding: 10px 10px;
+    background-color: var(--textColor2);
+    border-radius: 10px;
+}
+ 
+.alphabet-grid > button {
+    padding: 0;
+    text-transform: uppercase;
+    font-family: var(--quotationFont);
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    /* opacity: .75; */
+    color: var(--footerColor);
+    /* background-color: var(--quotationDisplayColor); */
+    background-color: rgb(238, 227, 198);
+    border: 2px solid rgb(241, 238, 230);
+    outline: none;
+}
+ 
+.alphabet-grid {
+    display: grid;
+    grid-template-rows: 42px;
+    grid-template-columns: repeat(26, 42px);
+    align-items: center;
+    justify-content: center;
+}
+ 
+.alphabet-grid-solution {
+    font-family: var(--quotationFont);
+    color: black;
+    /* text-decoration: underline; */
+    /* text-underline-offset: 3px; */
 }
 
-.bonus {
-    background-color: purple;
+.letter {
+    color: white;
 }
 
-.results {
+#restartRow {
+    align-items: center;
+}
+
+#win, #lose, #finalScore {
+    width: 200px;
+    height: 200px;
+    /* padding: 60px 0; */
+    font-size: 48px;
+    font-family: var(--headerFont);
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border: 2px solid var(--textColor2);
+    background-color: var(--textColor1);
+    border-radius: 10px;
+}
+
+#gameRestartSubheader {
+    /* margin: 40px; */
+    font-family: var(--headerFont);
+    font-size: 56px;;
+    color: white;
+    text-align: center;
+    margin:0;
+    padding: 0;
+}
+
+#finalScoreHeader, #finalScoreDisplay {
+    margin: 0;
+    padding: 0;
+    /* vertical-align: center; */
+    text-transform: uppercase;
+    font-size: 56px;
+}
+
+.bottom-footer {
+    position: absolute; 
+    margin: 0;
+    padding: 0;
     
 }
 
-footer {
-    background-color: black;
-    min-height: 60px;
+.colophon {
+    /* display: block; */
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    padding: 0;
+    font-size: 24px;
+    background-color: var(--footerColor);
+    color: white;
+    border: 2 px solid green;
 }
+ 
+ 
+ 
+ 

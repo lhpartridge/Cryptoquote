@@ -1,199 +1,323 @@
+<!-- 
+// Page load and other display settings
+// On init, the page settings are:
+    // Top header: only Rules, everything else d-none; display on level choice
+    // Header: display; d-none on game start
+    // quotationDisplayHome: display; d-none on game start
+    // quotatioDisplay: d-none; display on game start
+    // quotationDisplaySolution: d-none; display on game over
+    // homeMessage: display; d-none on game start
+    // scoreboard: d-none; display on game start
+    // levelButtonGroup: display; d-none on level click
+    // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
+    // startGroup: display; initial d-none after functionality of level and category; display on category click or level click 
+    // actionButtonGroup: d-none; display on game start
+    // authorButtonGroup: d-none; display when solution is complete; 
+    // restartGroup: d-none; display on game over
+
+ -->
 <!DOCTYPE html>
-<!--Cryptoquote Game
-Lorraine Hall Partridge
-Class project for the Mississippi Coding Academies 2021 -->
-
-<!--The header will include the title of the page and a set of links to contact info, etc.
-
-The main header will include the rules of the game in a hover over the Rules keyword
--->
-
-<!--The main part of the page will display a game board with the following elements:
-
-    a quotation display area which has a blank for each cipher character in a quotation and a corresponding area for the letters that have been revealed
-
-    an alphabet display area which has the letters of the alphabet displayed with their cipher character concealed until revealed
-
-    a player display area which contains the players names and chosen icons
-    
-    a points display area for one or two players which has the running total of points for each player
-
-    a bonus display area which has a question about the author or the work from which the quotation comes
-
-    a winner section which displays an animation when the game is over
--->
-
-<!--The footer will contain the links to the game developer, a like button that sends a message to the developer and increments the likes on the page, a link to the Mississippi Coding Academies and the colophon-->
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Cryptoquote</title>
 </head>
 <body>
-    <header>
-        <!--The header will include the title of the page and a set of links to contact info, etc.
-
-        The main header will include the rules of the game in a hover over the Rules keyword
-        -->
-        <section class="top-header">
-            <h3 class="rules-subheader">Rules</h3>
-            <div class="rules-div">
-                <div class="rules">
-                    <p>Cryptoquote uses a substitution cipher that changes each letter of the alphabet to a different letter or other symbol.  </p>
-                    <p>Each letter gets a point value that the player pays to reveal the letter.  </p>
-                    <p>Players start with 500 points.  When they select a letter, they pay a set amount for the letter choice multiplied by the number of times the letter is used in the quotation.</p>
+    <header class="header" id="header">
+        <div class="container top-header" id="top-header">
+            <div class="row top-header-row subheaders" id="subheaders">
+                <!--set subheaders to d-none until game starts-->
+                <h3 class="col-2 subheader rules-subheader" id="rules-subheader">Rules</h3>
+                <h3 class="col-2 subheader home-subheader" id="home">Cryptoquote</h3>
+                <h3 class="col-2 subheader restart-subheader" >Restart</h3>
+                <h3 class="col-2 subheader level-subheader">Level</h3>
+                <h3 class="col-2 subheader level-subheader">Category</h3>
+                <h3 class="col-2 subheader timer-subheader">Timer</h3>
+            </div><!--end of top-header row-->
+            <!--The rules div displays on hover-->
+            <div class="row rules-div" id="rules-div">
+                <div class="rules" id="rules">
+                    <p>Cryptoquote uses a substitution cipher that changes each letter of the alphabet in a famous quotation to a different letter or other symbol.  The goal is to solve the cryptoquote before a time limit by buying letters or solving for letters in the quotation.</p>
+                    <p class="rules-text"></p>
+                    <p></p>
+                    <p class="rules-text">The player chooses a category and starts the game to display a quotation.
+                        Each letter gets a point value.  The player starts with 500 points.  The player may choose to buy a letter or solve a letter.  When they buy a letter, they pay a set amount for the letter choice multiplied by the number of times the letter is used in the quotation.</p>
                     <p>If the player solves the cryptoquote, the value of all the remaining letters in the quotation is credited to the score.  If the player spends all the points before solving the cryptoquote, it is a loss.</p>
-                    <p>A bonus question will be offered after a successful constant that adds 100 points to the score.</p>
-                </div>
-            </div>
-        </section>
-        
-        <h1 id="gameName">Cryptoquote</h1>
-
-
-
-        <!-- <div class="game-div">
-            <h2>Solve the cipher to reveal the quotation.  </h2>
-            <h2>Bonus!  Name the source!</h2>
-            <h2>Genius level!  Solve a symbol cipher!</h2>
-        </div> -->
-
+                    <p>A bonus question will be offered after a successful solution that adds 100 points to the score.</p>
+                </div><!--end of rules div-->
+            </div> 
+        </div><!--end of top header container-->
     </header>
-    <main>
-        <!--The main part of the page will display a game board with the following elements:
-
-            a quotation display area 
-            an alphabet display area 
-            a player display area    
-            a points display area 
-            a bonus display area 
-            a results
--->
-        <section class="quotation">
-            <!--a quotation display area which has a blank for each cipher character in a quotation and a corresponding area for the letters that have been revealed-->
-            <h4>quotation display</h4>
-
-            <!--The max number of characters in the display should be 30 -36 or the breaks should be hard coded in the objects as sub-arrays-->
-            <div class="quotation-div">
-                <p class="text quotation-text">Th_s above all: </p>
-                <p class="text quotation-text quotation-constant">Jw<span class="pink">q</span>s qnxml qzz:</p>
-
-                <p class="text quotation-text">to th_ne own self be true,</p>
-                <p class="text quotation-text quotation-constant">jx jw<span class="pink">q</span>kl xwk hlla nl jefl,</p>
-
-                <p class="text quotation-text">And _t must follow,</p>
-                <p class="text quotation-text quotation-constant">Akd <span class="pink">q</span>j cfhj axzzxg,</p>  
-
-                <p class="text quotation-text">as the n_ght the day,</p>
-                <p class="text quotation-text quotation-constant">qs jwl k<span class="pink">q</span>iwt jwl yqs,</p>  
-                
-                <p class="text quotation-text">Thou canst not then</p>
-                <p class="text quotation-text quotation-constant">Jwxf rqkhj kxj jwlk</p>
-                
-                <p class="text quotation-text">be false to any man.</p>
-                <p class="text quotation-text quotation-constant">nl aqzhl jx aks cqk.</p>
-                                        
-                        
-            </div>
-        </section>
+ 
+    <!--The main part of the page will display based on the game state
+        Page load/Game restart
+            quotation display
+                model quotation
+                model cipherquote
+                author photo
+                author photo caption
+            Message display
+                Invitation message
+            Footer
+                Choose your level
+                Buttons
+                Beginner
+                Basic
+                Genius
+               
+            -->
+    <main class="main" id="main">
+        <div class="container gameboard-container" id="gameboardContainer">
+                      
+            <!--the game header displays until the game starts and the quotation display area is displayed-->
+            <h1 class="game-header d-none" id="game-header">cryptoquote</h1>
         
-        <section class="gameboard" id="gameboard">
-            <div class="player">
-                <!--    a player display area which contains the players names and chosen icons-->
-                <h4>player display</h4>
-            </div>
-            <div class="alphabet" id="alphabet">
-                <!--    a vertical display area for the alphabets which has the letters of the alphabet displayed with their cipher character concealed until revealed-->
-                <!-- <h4>alphabet display</h4> -->
-                <div class="alphabet-column"> 
-                    <!--The alphabet column holds two vertical columns:  the constant will be a button for the letters of ALPHABET and the solution will be a tile for the CIPHERALPHABET set to d-none until it is solved-->
-                    <div class="alphabet-grid alphabet-grid-constant">
-                        <button class="letter constant" id="A">A</button>
-                        <button class="letter constant" id="B">B</button>
-                        <button class="letter constant" id="C">C</button>
-                        <button class="letter constant" id="D">D</button>
-                        <button class="letter constant" id="E">E</button>
-                        <button class="letter constant" id="F">F</button>
-                        <button class="letter constant" id="G">G</button>
-                        <button class="letter constant" id="H">H</button>
-                        <button class="letter constant" id="I">I</button>
-                        <button class="letter constant" id="J">J</button>
-                        <button class="letter constant" id="K">K</button>
-                        <button class="letter constant" id="L">L</button>
-                        <button class="letter constant" id="M">M</button>
-                        <button class="letter constant" id="N">N</button>
-                        <button class="letter constant" id="O">O</button>
-                        <button class="letter constant" id="P">P</button>
-                        <button class="letter constant" id="Q">Q</button>
-                        <button class="letter constant" id="R">R</button>
-                        <button class="letter constant" id="S">S</button>
-                        <button class="letter constant" id="T">T</button>
-                        <button class="letter constant" id="U">Y</button>
-                        <button class="letter constant" id="V">V</button>
-                        <button class="letter constant" id="W">W</button>
-                        <button class="letter constant" id="X">X</button>
-                        <button class="letter constant" id="Y">Y</button>
-                        <button class="letter constant" id="Z">Z</button>
+                <!--The home quotation displays at page load until the quotation display area is displayed-->
+            <div class="row quotation-display-row" id="quoteRow">
+                <div class="col-8 quotation-display d-none" id="quotationDisplayHome">
+                    <div class="home-portrait-frame portrait-group" id="homePortraitFrame">
+                        <img src="css/media/capability_brown.png"  alt='Lancelot "Capability" Brown' class="portrait portrait-img img-fluid" id="homePortrait">
+                        <p class="portrait-text name" id="name">Lancelot "Capability" Brown</p>
+                        <p class="portrait-text date" id="date">1716-1783</p>
                     </div>
-                    <div class="alphabet-grid alphabet-grid-solution">
-                        <button class="letter solution" id="a">u</button>
-                        <button class="letter solution" id="b">n</button>
-                        <button class="letter solution" id="c">r</button>
-                        <button class="letter solution" id="d">y</button>
-                        <button class="letter solution" id="e">l</button>
-                        <button class="letter solution" id="f">a</button>
-                        <button class="letter solution" id="g">i</button>
-                        <button class="letter solution" id="h">w</button>
-                        <button class="letter solution" id="i">q</button>
-                        <button class="letter solution" id="j">b</button>
-                        <button class="letter solution" id="k">o</button>
-                        <button class="letter solution" id="l">z</button>
-                        <button class="letter solution" id="m">c</button>
-                        <button class="letter solution" id="n">k</button>
-                        <button class="letter solution" id="o">x</button>
-                        <button class="letter solution" id="p">d</button>
-                        <button class="letter solution" id="q">v</button>
-                        <button class="letter solution" id="r">e</button>
-                        <button class="letter solution" id="s">h</button>
-                        <button class="letter solution" id="t">j</button>
-                        <button class="letter solution" id="u">f</button>
-                        <button class="letter solution" id="v">m</button>
-                        <button class="letter solution" id="w">g</button>
-                        <button class="letter solution" id="x">p</button>
-                        <button class="letter solution" id="y">s</button>
-                        <button class="letter solution" id="z">t</button>
-                    </div> 
-                </div><!--end of alphabet-column container-->
-            </div><!--end of alphabet div-->
+                    <p class="quotation home-quotation" id="homeQuotation">
+                        Placemaking, and a good English garden depend entirely on principle and have very little to do with fashion.
+                    </p>
+                    <p class="cipherQuote home-cipherQuote" id="homeCipherQuote">
+                        ogimdsijbyw, iyn i wqqn dywgbup wikndy ndodyn dylbkdgt qy okbymbogd iyn pihd hdkt gbllgd lq nq cblp eiupbqy.
+                    </p>
+                </div>
 
-            </div><!--end of gameboard div-->
-            <!-- 
-                <p class="text alphabet-text">8 2 3 4 12 2 1 6 8 1 1 4 3 8 8 1 1 6 8 9 3 1 2 1 2 1</p>
-                <p class="text alphabet-text">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
-                <p class="text alphabet-text alphabet-constant">u n r y l a i w q b o z c k x d v e h j f m g p s t</p>-->
-        </section><!--end of gaemboard section-->
-            <section class="scoreboard" id="scoreboard"> 
-                <div class="points">
-                    <!--    a points display area for one or two players which has the running total of points for each player-->
-                    <h4>points display</h4>
-                </div><!--end of points-->
-                <div class="bonus">
-                    <!--    a bonus display area which has a question about the author or the work from which the quotation comes-->
-                    <h4>bonus display</h4>
-                </div><!--end of bonus div-->
-                <div class="results">
-                    <!--    a results section which displays an animation when the game is over-->
-                    <h4>results display</h4>
-                </div><!--end of results div-->
-            </section><!--end of scoreboard section-->
+                <!-- changed t0 col-9 from col-10 to provide a border on the gameboard -->
+                <div class="col-9 quotation-display " id="quotationDisplay">
+                    <p class="quotation" id="quotation"></p>
+                    <p class="cipherQuote" id="cipherQuote"></p>
+
+                    <!-- <p class="quotation" id="quotation">
+                        Placemaking, and a good English garden depend entirely on principle and have very little to do with fashion.
+                    </p> -->
+                    <!-- <p class="cipherQuote" id="cipherQuote">
+                        ogimdsijbyw, iyn i wqqn dywgbup wikndy ndodyn dylbkdgt qy okbymbogd iyn pihd hdkt gbllgd lq nq cblp eiupbqy.
+                    </p> -->
+                </div>
+
+                <div class="col-12 quotation-display d-none" id="quotationDisplaySolution">
+                    <p class="quotation-solution" id="description">
+                        Lancelot Brown revolutionized landscape design in 18th century England.  Brown’s nickname ‘Capability’ is thought to have come from his habit of describing landscapes as having ‘great capabilities’.
+                    </p>
+                    <p class="quotation-solution" id="quotationSolution">
+                        Placemaking, and a good English garden depend entirely on principle and have very little to do with fashion.
+                    </p>
+                    <img src="css/media/capability_brown.png"  alt="placeholder img" class="portrait img-fluid" id="solutionPortrait">
+                </div>
+
+                <div class=" col-4 message home-message d-none" id="homeMessage">
+                    <p class="text message-text" id="home-message-text1">Solve the cipher!</p>
+                    <p class="text message-text" id="home-message-text2">Beat the clock!</p>
+                    <p class="text message-text" id="home-message-text3">Reveal the quotation!</p>
+                    <p class="text message-text" id="home-message-text4">Bonus points:</p>
+                    <p class="text message-text" id="home-message-text5">Name the author!</p>
+                    <!-- <button class="btn start-button" id="startButton">Start game</button> -->
+                </div>
+
+                <!-- Set scoreboard to d-none until game starts -->
+                <div class="col-2 scoreboard " id="scoreboard">
+                    <div class=" scoreboard-block">
+                        <h3 class="subheader score-header" id="letterHeader">letter</h3>
+                        <div class="display letter-display" id="letterDisplay"></div>
+                    </div>
+                    <div class=" scoreboard-block">
+                        <h3 class="subheader score-header" id="valueHeader">value</h3>
+                        <div class="display value-display" id="valueDisplay"></div>
+                    </div>    
+                    <div class=" scoreboard-block">
+                        <h3 class="subheader score-header" id="countHeader">count</h3>
+                        <div class="display count-display" id="countDisplay"></div>
+                    </div>    
+                    <div class=" scoreboard-block">
+                        <h3 class="subheader score-header" id="totalHeader">total</h3>
+                        <div class="display total-display" id="totalDisplay"></div>
+                    </div>    
+                    <div class=" scoreboard-block">
+                        <h3 class="subheader score-header" id="scoreHeader">score</h3>
+                        <div class="display score-display" id="scoreDisplay"></div>
+                    </div>    
+                </div>
+
+            </div>
+    
+            <!-- </div> -->
+            <!-- </div> -->
+        </div>               
+         
     </main>
-    <footer>
+           
+    <footer class="footer" id="footer">
+        <div class="container footer-container">
+            <div class="row button-row" id="buttonRow">
+               
+                <div class="col-12 level-button-group d-none" id="levelButtonGroup">
+                    <h2 class="chooseLevel" id="chooseLevel">Choose your level:  </h2>
+                    <h2 class="chooseLevel d-none" id="yourLevel">Your level:  </h2>
+                    <div class="row button-group level-buttons" id="levelButtons">
+                        <button class="button btn level-button" id="beginner">beginner</button>
+                        <button class="button btn level-button" id="basic">basic</button>
+                        <button class="button btn level-button" id="genius">genius</button>
+                    </div>
+                </div>
+ 
+                <!-- The page will load with the category display once that level of functiality exists -->
+                <div class="col-12 category-button-group d-none" id="categoryButtonGroup">
+                    <h2 class="choose-category" id="chooseCategory">Choose your category:  </h2>
+                    <h2 class="choose-category" id="yourCategory">Your category:  </h2>
+                    <div class="row button-group" id="categoryButtons">
+                        <button class="button btn category-button" id="scienceMath">Science and Mathematics</button>
+                        <button class="button btn category-button" id="polStates">Politicians and Statesmen</button>
+                        <button class="button btn category-button" id="philos">Philosophers</button>
+                    </div>
+                </div>
+ 
+                <!-- The start button group will be displayed on page load until the chooseLevel function is enabled -->
+                    <div class="col-12 start-group d-none" id="startGroup">
+                        <div class="row button-group start-group" id="startRow">
+ 
+                            <div class="col-8 message start-message " id="startMessage">
+                                <h2 class="subheader start-subheader" id="startLevelSubheader">Your level:  Basic</h2>
+                                <!-- <h2 class="subheader start-subheader" id="startLevelSubheaderPlayer">Basic</h2> -->
+                                <h2 class="subheader start-subheader" id="startCategorySubheader">Your category:</h2>
+                                <h2 class="subheader start-subheader" id="startCategorySubheaderPlayer">Science and Mathematics</h2>
+                            </div>
+                           
+                            <!--The confirm button will be enabled once that level of functionality exists-->
 
+                            <div class="col-4 button-group start-buttons-group" id="startButtonsGroup">
+                                <button class="button btn confirm-button d-none" id="settingsButton">Confirm settings</button>
+                                <button class="button btn start-button" id="startButton">Start game</button>
+                            </div>
+                        </div>   
+                    </div>
+                    <!-- </div> -->
+ 
+                    <!-- Set actionButtonGroup to d-none until game starts -->
+                    <div class="col-12 action-button-group " id="actionButtonGroup">
+                        <div class="row button-group action-buttons " id="actionButtons">
+                            <!-- <div class="action-message" id="actionMessageDiv">
+                                <p class="action-button" id="actionMessage">Choose action</p>
+                            </div> -->
+                            <button class="button btn action-button confirm-action " id="confirmAction">Confirm</button>              
+                            <button class="button btn action-button buy-button" id="buyButton">Buy a letter</button>
+                            <button class="button btn action-button solve-button" id="solveButton">Solve a letter</button>
+                        </div>
+ 
+                        <div class="row alphabet-row " id="alphabetRow">
+                            <div class="col-12 alphabet-group" id="alphabetGroup">
+            
+                                <div class="alphabet-grid alphabet-grid-1">
+                                    <button class="button btn letter default" id="A">a</button>
+                                    <button class="button btn letter default" id="B">b</button>
+                                    <button class="button btn letter default" id="C">c</button>
+                                    <button class="button btn letter default" id="D">d</button>
+                                    <button class="button btn letter default" id="E">e</button>
+                                    <button class="button btn letter default" id="F">f</button>
+                                    <button class="button btn letter default" id="G">g</button>
+                                    <button class="button btn letter default" id="H">h</button>
+                                    <button class="button btn letter default" id="I">i</button>
+                                    <button class="button btn letter default" id="J">j</button>
+                                    <button class="button btn letter default" id="K">k</button>
+                                    <button class="button btn letter default" id="L">l</button>
+                                    <button class="button btn letter default" id="M">m</button>
+                                    <button class="button btn letter default" id="N">n</button>
+                                    <button class="button btn letter default" id="O">o</button>
+                                    <button class="button btn letter default" id="P">p</button>
+                                    <button class="button btn letter default" id="Q">q</button>
+                                    <button class="button btn letter default" id="R">r</button>
+                                    <button class="button btn letter default" id="S">s</button>
+                                    <button class="button btn letter default" id="T">t</button>
+                                    <button class="button btn letter default" id="U">u</button>
+                                    <button class="button btn letter default" id="V">v</button>
+                                    <button class="button btn letter default" id="W">w</button>
+                                    <button class="button btn letter default" id="X">x</button>
+                                    <button class="button btn letter default" id="Y">y</button>
+                                    <button class="button btn letter default" id="Z">z</button>
+                                </div>
+                                <div class="alphabet-grid alphabet-grid-solution">
+                                    <button class="button btn letter solution" id="a">a</button>
+                                    <button class="button btn letter solution" id="b">b</button>
+                                    <button class="button btn letter solution" id="c">c</button>
+                                    <button class="button btn letter solution" id="d">d</button>
+                                    <button class="button btn letter solution" id="e">e</button>
+                                    <button class="button btn letter solution" id="f">f</button>
+                                    <button class="button btn letter solution" id="g">g</button>
+                                    <button class="button btn letter solution" id="h">h</button>
+                                    <button class="button btn letter solution" id="i">i</button>
+                                    <button class="button btn letter solution" id="j">j</button>
+                                    <button class="button btn letter solution" id="k">k</button>
+                                    <button class="button btn letter solution" id="l">l</button>
+                                    <button class="button btn letter solution" id="m">m</button>
+                                    <button class="button btn letter solution" id="n">n</button>
+                                    <button class="button btn letter solution" id="o">o</button>
+                                    <button class="button btn letter solution" id="p">p</button>
+                                    <button class="button btn letter solution" id="q">q</button>
+                                    <button class="button btn letter solution" id="r">r</button>
+                                    <button class="button btn letter solution" id="s">s</button>
+                                    <button class="button btn letter solution" id="t">t</button>
+                                    <button class="button btn letter solution" id="u">u</button>
+                                    <button class="button btn letter solution" id="v">v</button>
+                                    <button class="button btn letter solution" id="w">w</button>
+                                    <button class="button btn letter solution" id="x">x</button>
+                                    <button class="button btn letter solution" id="y">y</button>
+                                    <button class="button btn letter solution" id="z">z</button>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-12 author-button-group d-none" id="authorButtonGroup">
+                        <h2 class="subheader author-subheader" id="authorSubheader">You solved the Cryptoquote! Bonus:  Who said it?</h2>
+                        <!-- <h2 class="subheader author-subheader" id="bonusSubheader">Bonus:  Who said it?</h2> -->
+                        <div class="row button-group author-buttons " id="authorButtons">
+                            <button class="button btn author-button" id="author1">Gertrude Jekyll</button>
+                            <button class="button btn author-button" id="author2">Lancelot "Capability" Brown</button>
+                            <button class="button btn author-button" id="author3">Andre Le Notre</button>              
+                        </div>
+                    </div>
+
+                    <div class="col-12 restart-group d-none" id="restartGroup">
+                        <div class="row button-group restart-group" id="restartRow">
+                            <div class="col-3 win" id="win">You win!</div>
+                            <div class="col-3 lose d-none" id="lose">You lose!</div>
+                            <div class="col-3 final-score-header" id="finalScore">
+                                <p class="subheader score-header" id="finalScoreHeader">score</p>
+                                <p class="display score-display" id="finalScoreDisplay">760</p>
+                            </div>
+                            
+                            <div class="col-4 message restart-message " id="restartMessage">
+                                <h2 class="subheader game-restart-subheader" id="gameRestartSubheader">Play again!</h2>
+                                <div class="button-group restart-buttons-group" id="restartButtonsGroup">
+                                    <button class="button btn restart-button" id="restartButton">Start game</button>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                    
+
+        </div>
+               
+        <div class="bottom-footer " id="bottom-footer">
+            <div class="colophon " id="colophon">&copy;2022 Lorraine Hall Partridge     Apologicode</div>
+        </div>
+    
+        
     </footer>
+    <!--Scripts-->
+    <!--temporarily changed the js file from js3.js-->
     <script src="js/app.js"></script>
+    <!--Bootstrap 4.6 bundle-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>
