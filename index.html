@@ -28,18 +28,18 @@
 </head>
 <body>
     <header class="header" id="header">
-        <div class="container top-header" id="top-header">
+        <div class="container top-header" id="topHeader">
             <div class="row top-header-row subheaders" id="subheaders">
                 <!--set subheaders to d-none until game starts-->
-                <h3 class="col-2 subheader rules-subheader" id="rules-subheader">Rules</h3>
+                <h3 class="col-2 subheader rules-subheader" id="rulesSubheader">Rules</h3>
                 <h3 class="col-2 subheader home-subheader" id="home">Cryptoquote</h3>
-                <h3 class="col-2 subheader restart-subheader" >Restart</h3>
-                <h3 class="col-2 subheader level-subheader">Level</h3>
-                <h3 class="col-2 subheader level-subheader">Category</h3>
-                <h3 class="col-2 subheader timer-subheader">Timer</h3>
+                <h3 class="col-2 subheader restart-subheader" id="restartSubheader">Restart</h3>
+                <h3 class="col-2 subheader level-subheader" id="levelSubheader">Level</h3>
+                <h3 class="col-2 subheader category-subheader" id="categorySubheader">Category</h3>
+                <h3 class="col-2 subheader timer-subheader" id="timerSubheader">Timer</h3>
             </div><!--end of top-header row-->
             <!--The rules div displays on hover-->
-            <div class="row rules-div" id="rules-div">
+            <div class="row rules-div" id="rulesDiv">
                 <div class="rules" id="rules">
                     <p>Cryptoquote uses a substitution cipher that changes each letter of the alphabet in a famous quotation to a different letter or other symbol.  The goal is to solve the cryptoquote before a time limit by buying letters or solving for letters in the quotation.</p>
                     <p class="rules-text"></p>
@@ -74,11 +74,11 @@
         <div class="container gameboard-container" id="gameboardContainer">
                       
             <!--the game header displays until the game starts and the quotation display area is displayed-->
-            <h1 class="game-header d-none" id="game-header">cryptoquote</h1>
+            <h1 class="game-header" id="gameHeader">cryptoquote</h1>
         
                 <!--The home quotation displays at page load until the quotation display area is displayed-->
             <div class="row quotation-display-row" id="quoteRow">
-                <div class="col-8 quotation-display d-none" id="quotationDisplayHome">
+                <div class="col-8 quotation-display" id="quotationDisplayHome">
                     <div class="home-portrait-frame portrait-group" id="homePortraitFrame">
                         <img src="css/media/capability_brown.png"  alt='Lancelot "Capability" Brown' class="portrait portrait-img img-fluid" id="homePortrait">
                         <p class="portrait-text name" id="name">Lancelot "Capability" Brown</p>
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- changed t0 col-9 from col-10 to provide a border on the gameboard -->
-                <div class="col-9 quotation-display " id="quotationDisplay">
+                <div class="col-9 quotation-display d-none" id="quotationDisplay">
                     <p class="quotation" id="quotation"></p>
                     <p class="cipherQuote" id="cipherQuote"></p>
 
@@ -115,7 +115,7 @@
                     <img src="css/media/capability_brown.png"  alt="placeholder img" class="portrait img-fluid" id="solutionPortrait">
                 </div>
 
-                <div class=" col-4 message home-message d-none" id="homeMessage">
+                <div class=" col-4 message home-message" id="homeMessage">
                     <p class="text message-text" id="home-message-text1">Solve the cipher!</p>
                     <p class="text message-text" id="home-message-text2">Beat the clock!</p>
                     <p class="text message-text" id="home-message-text3">Reveal the quotation!</p>
@@ -125,7 +125,7 @@
                 </div>
 
                 <!-- Set scoreboard to d-none until game starts -->
-                <div class="col-2 scoreboard " id="scoreboard">
+                <div class="col-2 scoreboard d-none" id="scoreboard">
                     <div class=" scoreboard-block">
                         <h3 class="subheader score-header" id="letterHeader">letter</h3>
                         <div class="display letter-display" id="letterDisplay"></div>
@@ -182,7 +182,7 @@
                 </div>
  
                 <!-- The start button group will be displayed on page load until the chooseLevel function is enabled -->
-                    <div class="col-12 start-group d-none" id="startGroup">
+                    <div class="col-12 start-group" id="startGroup">
                         <div class="row button-group start-group" id="startRow">
  
                             <div class="col-8 message start-message " id="startMessage">
@@ -203,7 +203,7 @@
                     <!-- </div> -->
  
                     <!-- Set actionButtonGroup to d-none until game starts -->
-                    <div class="col-12 action-button-group " id="actionButtonGroup">
+                    <div class="col-12 action-button-group d-none" id="actionButtonGroup">
                         <div class="row button-group action-buttons " id="actionButtons">
                             <!-- <div class="action-message" id="actionMessageDiv">
                                 <p class="action-button" id="actionMessage">Choose action</p>
@@ -292,7 +292,7 @@
                             <div class="col-3 lose d-none" id="lose">You lose!</div>
                             <div class="col-3 final-score-header" id="finalScore">
                                 <p class="subheader score-header" id="finalScoreHeader">score</p>
-                                <p class="display score-display" id="finalScoreDisplay">760</p>
+                                <p class="display score-display" id="finalScoreDisplay"></p>
                             </div>
                             
                             <div class="col-4 message restart-message " id="restartMessage">

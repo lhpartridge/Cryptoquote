@@ -8,6 +8,23 @@ Include methods
 Create a class for the cryptoquote with keys for quoteArray and cipherArray, the array for the ciphered alphabet
  */
  
+// Page load and other display settings
+// On init, the page settings are:
+    // Top header: only Rules, everything else d-none; display on level choice
+    // Header: display; d-none on game start
+    // quotationDisplayHome: display; d-none on game start
+    // quotatioDisplay: d-none; display on game start
+    // quotationDisplaySolution: d-none; display on game over
+    // homeMessage: display; d-none on game start
+    // scoreboard: d-none; display on game start
+    // levelButtonGroup: display; d-none on level click
+    // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
+    // startGroup: display; initial d-none after functionality of level and category; display on category click or level click
+    // actionButtonGroup: d-none; display on game start
+    // authorButtonGroup: d-none; display when solution is complete;
+    // restartGroup: d-none; display on game over
+
+
 class Cryptoquote {
     constructor (quoteArray, cipherArray) {
 // 1/24 10:44 Moved global variables from below into the constructor
@@ -25,6 +42,9 @@ class Cryptoquote {
         this.letterValues = [
             8, 3, 6, 5, 9, 4, 3, 6, 8, 1, 2, 6, 4, 7, 7, 5, 1, 7, 7, 9, 4, 2, 3, 2, 5, 1
         ];
+
+        // Ethan advised me to have an array of solved letters to ensure that the alphabet and solution tiles are displayed correctly
+        this.solvedLetters = [];
          
         // I may end up not using the scoreboard object
         this.scoreboard = {
@@ -43,17 +63,84 @@ class Cryptoquote {
         }
 
         // Moved all the global elements into the constructor
+        // DOM code blocks for changing display settings
+
+        // Top header: only Rules, everything else d-none; display on level choice
+        this.topHeader = document.getElementById('topHeader');
+        this.rules = document.getElementById('rulesDiv');
+
+        // Header: display; d-none on game start
+        this.gameHeader = document.getElementById('gameHeader');
+
+        // quotationDisplayHome: display; d-none on game start
+        this.quotationDisplayHome = document.getElementById('quotationDisplayHome');
+
+        // quotatioDisplay: d-none; display on game start
+        this.quotationDisplay = document.getElementById('quotationDisplay');
+
+        // quotationDisplaySolution: d-none; display on game over
+        this.quotationDisplaySolution = document.getElementById('quotationDisplaySolution');
+
+        // homeMessage: display; d-none on game start
+        this.homeMessage = document.getElementById('homeMessage');
+
+        // scoreboard: d-none; display on game start
+        this.scoreboard = document.getElementById('scoreboard');
+
+        // levelButtonGroup: display; d-none on level click
+        this.levelButtonGroup = document.getElementById('levelButtonGroup');
+
+        // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
+        this.categoryButtonGroup = document.getElementById('categoryButtonGroup');
+
+        // startGroup: display; initial d-none after functionality of level and category; display on category click or level click
+        this.startGroup = document.getElementById('startGroup');
+
+        // actionButtonGroup: d-none; display on game start
+        this.actionButtonGroup = document.getElementById('actionButtonGroup');
+
+        // authorButtonGroup: d-none; display when solution is complete;
+        this.authorButtonGroup = document.getElementById('authorButtonGroup');
+
+        // restartGroup: d-none; display on game over
+        this.restartGroup = document.getElementById('restartGroup');
+
+        // access the buttons in the DOM
+        // startButton will be accessed outside the class at the end of the code before calling init
+
+        // the level buttons will be enabled in a later phase of game development
+        this.beginner = document.getElementById('beginner');
+        this.basic = document.getElementById('basic');
+        this.genius = document.getElementById('genius');
+
+        // the category buttons will be enabled in a later phase of game development; other categories will be added later
+        this.scienceMath = document.getElementById('scienceMath');
+        this.polStates = document.getElementById('polStates');
+        this.philos = document.getElementById('philos');
+
+        // the author buttons will be enabled in a later phase of game development once the functionality of the bonus is added
+        this.author1 = document.getElementById('author1');
+        this.author2 = document.getElementById('author2');
+        this.author3 = document.getElementById('author3');
+
+        // ----------GET SUBHEADERS FOR DISPLAYING THE LEVEL AND CATEGORY
+        // ----------BE SURE TO DISABLE CONFIRM BUTTON (AND OTHER BUTTONS) WHEN NOT IN USE
+
+        // actionButtonGroup buttons 
         this.confirmAction = document.getElementById('confirmAction');
         this.buyButton = document.getElementById('buyButton');
         this.solveButton = document.getElementById('solveButton');
+
+        // restartButton
+        this.restartButton = document.getElementById('restartButton');
         
         this.letterDisplay = document.getElementById('letterDisplay');
         this.valueDisplay = document.getElementById('valueDisplay');
         this.countDisplay = document.getElementById('countDisplay');
         this.totalDisplay = document.getElementById('totalDisplay');
         this.scoreDisplay = document.getElementById('scoreDisplay');
+        this.scoreDisplay.innerText = this.score;
 
-        
  
         this.quotationBank = {
             quote1: {
@@ -121,7 +208,7 @@ class Cryptoquote {
 
         // 1/24 11:26 moved the initialization of these variables into the constructor
         this.cipher = this.getCipherAlphabet();
-        this.quoteArray = this.getQuoteArray(this.quotationBank.quote1.quotation);
+        this.quoteArray = this.getQuoteArray(this.quotationBank.quote3.quotation);
         this.cipherArray = this.getCipherArray(this.quoteArray);
 
         // this.cipher = getCipherAlphabet();
@@ -136,6 +223,8 @@ class Cryptoquote {
 // Moved all the functions into the class as methods
 // 1/24 11:03  Moved init to first method inside class but not inside constructor; removed the arrow notation
     init() {
+        console.log("init has started");
+        this.displayOnInit();
         this.getCipherAlphabet();
         this.getQuoteArray(this.quotationBank.quote1.quotation);
         this.getCipherArray(this.quoteArray);
@@ -143,7 +232,54 @@ class Cryptoquote {
         this.displayQuotation();
         this.displayCipherQuote();
         this.chooseAction();
+
+        // page settings once init has started
+        this.startGroup.style.display = "none";
+        this.quotationDisplay.style.display = "block";
+
+
+
+    //     // set initial page settings
+    //     // On init, the page settings are:
+    // // Top header: only Rules, everything else d-none; display on level choice; will leave displayed for now
+
+    // // Header: display; d-none on game start
+    //     this.gameHeader.style.display = "block";
+
+    // // quotationDisplayHome: display; d-none on game start
+    //     this.quotationDisplayHome.style.display = "block";
+
+    // // quotatioDisplay: d-none; display on game start
+    //     this.quotationDisplay.style.display = "none";
+
+    // // quotationDisplaySolution: d-none; display on game over
+    //     this.quotationDisplaySolution.style.display = "none";
+
+    // // homeMessage: display; d-none on game start
+    //     this.homeMessage.style.display = "none";
+
+    // // scoreboard: d-none; display on game start
+    //     this.scoreboard.style.display = "none";
+
+    // // levelButtonGroup: display; d-none on level click
+    //     this.levelButtonGroup.style.display = "none";
+
+    // // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
+    //     this.categoryButtonGroup.style.display = "none";
+
+    // // startGroup: display; initial d-none after functionality of level and category; display on category click or level click
+    //     this.startGroup.style.display = "none";
+
+    // // actionButtonGroup: d-none; display on game start
+    //     this.actionButtonGroup.style.display = "none";
+
+    // // authorButtonGroup: d-none; display when solution is complete;
+    //     this.authorButtonGroup.style.display = "none";
+
+    // // restartGroup: d-none; display on game over
+    //     this.restartGroup.style.display = "none";
     };
+
     //getCipherAlphabet() generates the cipher for the puzzle and stores it as an array in cipher
     getCipherAlphabet() {
         let cipher = [];
@@ -154,12 +290,9 @@ class Cryptoquote {
             cipher.push(tempAlphabet[letterIdx]);
             tempAlphabet.splice(letterIdx, 1);  
         }    
-
         return cipher;
     }
 
-
-    
     //getQuoteArray(quotation) takes in the quotation from the constructor and spreads it into an array quoteArray
     getQuoteArray(quotation) {
         let quote = quotation.toUpperCase();
@@ -190,7 +323,58 @@ class Cryptoquote {
         }          
     }
 
-    // The following methods will be calles as they are needed
+    // displayOnInit() sets the initial display properties for the game board
+    displayOnInit() {
+    // Top header: only Rules, everything else d-none; display on level choice; will leave displayed for now
+
+    // Header: display; d-none on game start
+    this.gameHeader.style.display = "none";
+
+    // quotationDisplayHome: display; d-none on game start
+        this.quotationDisplayHome.style.display = "none";
+
+    // quotatioDisplay: d-none; display on game start
+    // specificity issues:  d-none needs to be removed 
+    // important tags can only be overridden by another important tags below 
+    // avoid using or overusing; it's a bootstrap thing
+    // override order is : tag, then class, then id, then inline, then important
+    // read up later on
+
+        this.quotationDisplay.classList.remove('d-none');
+        // this.quotationDisplay.style.display = "block";
+
+    // quotationDisplaySolution: d-none; display on game over
+        this.quotationDisplaySolution.style.display = "none";
+
+    // homeMessage: display; d-none on game start
+        this.homeMessage.style.display = "none";
+
+    // scoreboard: d-none; display on game start
+        // this.scoreboard.style.display = "none";
+        this.scoreboard.classList.remove('d-none');
+
+    // levelButtonGroup: display; d-none on level click
+        this.levelButtonGroup.style.display = "none";
+
+    // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
+        this.categoryButtonGroup.style.display = "none";
+
+    // startGroup: display; initial d-none after functionality of level and category; display on category click or level click
+        this.startGroup.style.display = "block";
+
+    // actionButtonGroup: d-none; display on game start
+        this.actionButtonGroup.classList.remove("d-none");
+        // this.actionButtonGroup.style.display = "none";
+
+
+    // authorButtonGroup: d-none; display when solution is complete;
+        this.authorButtonGroup.style.display = "none";
+
+    // restartGroup: d-none; display on game over
+        this.restartGroup.style.display = "none";
+    }
+
+    // The following methods will be called as they are needed
 
     // displayCipherAlphabet will be displayed when startButton is clicked
     //displayCipherAlphabet(cipher) takes in the cipher and displays the letters on the solution tiles in the alphabet grid when the letter is solved
@@ -284,12 +468,14 @@ class Cryptoquote {
     // chooseAction listens to the action buttons for the player to choose to buy a letter or solve a letter
     // then calls the respective functions
     chooseAction () {
+        console.log("chooseAction begins");
         this.letter = '';//added to reset letter at the beginning of the function
         this.confirmAction.innerText = 'Choose Action';
-    
+        // console.log("at beginning of chooseAction this.score is", this.score);
         // reset scoreboard after the player chooses the action
         this.buyButton.addEventListener('click', ()=> {
             // added the variable action to prevent solveLetter from running after buyLetter
+            // console.log("in chooseAction at beginning of buyLetter event listener this.score is",this.score);
             this.action = "buy";
             this.confirmAction.disabled = false;
             this.letterDisplay.innerText = '';
@@ -301,17 +487,22 @@ class Cryptoquote {
     
             // call the choose letter method; this letter will be used in multiple methods
             this.letter = this.chooseAlphabetTile();
-
+            console.log("inside chooseAction after bought letter  and solvedLetters =", this.letter, this.solvedLetters);
+            // console.log("in chooseAction after letter is chosen event listener this.score is",this.score);
             // moved the confirmAction event listener to inside the buyButton event listener to prevent the color change until the buyButton function has run
             this.confirmAction.addEventListener('click', ()=> {
                 this.confirmAction.innerText = 'Choose action';
                 this.confirmAction.innerText = '';
                 // call the buyLetter method
                 this.buyLetter(this.letter);
+                console.log("return letter, ", this.letter, "to chooseAction from buyLetter"); 
+                // console.log("in chooseAction after the buyLetter function is run, this.score is", this.score);
             });
             // confirmAction.disabled = true;
             //added return statement to avoid running the next event listener; may need to remove it
-            return;
+            // console.log("in chooseAction at end of buyLetter event listener this.score is",this.score);
+            console.log("in chooseAction end of buyLetter event listener");
+            // return;
         })
 
         //  need to add another event listener to confirm the letter to call buyLetter
@@ -334,12 +525,15 @@ class Cryptoquote {
             this.confirmAction.addEventListener('click', ()=> {
                 // call the solveLetter method
                 this.solveLetter(this.letter);
+                console.log("return letter to chooseAction from solveLetter");
                 // added the following code to prevent the scoreboard from displaying the count until match is confirmed
                 this.countDisplay.innerText = '';
                 this.totalDisplay.innerText = '';
                 this.countDisplay.style.fontSize = "36px";
-                this.confirmAction.innerText = 'Choose quote tile';
+                // commented out confirmAction.innerText because it should be handled in solveLetter
+                // this.confirmAction.innerText = 'Choose quote tile';
             })
+            console.log("in chooseAction end of solveLetter event listener");
             //added return statement to avoid running the next event listener
             return;
         })
@@ -351,11 +545,12 @@ class Cryptoquote {
 // then changes the color of the alphabet and solution tiles for that letter when Confirm button is clicked
 // then calls the appropriate function to buy or solve the letter
     chooseAlphabetTile() {
+        console.log("chooseAlphabetTile begins");
         for (let i = 0; i < 26; i++) {
             // confirmAction.disabled = false;
             let alphabetTile = document.getElementById(this.alphabet[i]);
             let solutionTile = document.getElementById(this.alphabetLC[i]);
-            // letter = '';//added to reset letter at the beginning of the function
+            // this.letter = '';//added to reset letter at the beginning of the function
             
             alphabetTile.addEventListener('click', ()=> {
                 this.confirmAction.innerText = 'Confirm letter';
@@ -373,7 +568,7 @@ class Cryptoquote {
     
                 alphabetTile.style.color = "white";
                 alphabetTile.style.backgroundColor = "#024402";
-
+                console.log("chooseAlphabetTile ends, letter is", this.letter);
                 return this.letter;
             })
         }
@@ -392,9 +587,18 @@ class Cryptoquote {
 // then changes the display for each instance of the quotation in the cipherQuote to red (or another color)
 
     buyLetter(letter) {
-        if(action == "solve") {
+        console.log("buyLetter begins");
+        if (action == "solve") {
             return;
         }
+        console.log("at the beginning of buyLetter, letter and solvedLetters = ", this.letter, this.solvedLetters);
+        // // added this conditional to prevent buyLetter from continuing if the letter has already been solved
+        // // the result was that the confirmAction button text no longer displays
+        // if (this.solvedLetters.includes(this.letter)) {
+        //     console.log("Solved letters already contains the letter ", this.letter);
+        //     return;
+        // }
+
         let valueIndex = this.alphabet.indexOf(this.letter);
         let letterValue = this.letterValues[valueIndex];
         let newLetter = this.cipher[valueIndex];
@@ -405,6 +609,7 @@ class Cryptoquote {
         let total = 0;
         let count = 0;
         const indexArray = [];
+        console.log("newLetter is", newLetter);
 
         for (let i = 0; i < this.quoteArray.length; i++) {
             if (this.quoteArray[i] == letter) {
@@ -428,22 +633,51 @@ class Cryptoquote {
                 this.totalDisplay.innerText = total;  
                 this.countDisplay.style.fontSize = "36px";
                 // console.log("Bought a ", letter, "change tile color here");
-            }
+        }
+        console.log(this.letter, this.solvedLetters);
             //moved inside the conditional to prevent color change until confirmed
             // moved back outside to keep from running every iteration
             this.changeQuoteTiles(this.letter);
             // added conditional to debit the score if there are no instances of the letter
             // else the debit is the total value of the tile count
+
+            // ------------ERROR IN THIS SECTION; NEED TO ADD ANOTHER CONDITION BECAUSE THE SCORE IS INCORRECTLY DECREASED
             if (count == 0) {
+                console.log("if count == 0 in buyLetter, before change this.score is", this.score);
                 this.score -= letterValue;
+                console.log("if count == 0 in buyLetter, after change this.score is", this.score);
                 total = -(letterValue);
             }   else {
+                // console.log("if count != 0 in buyLetter, before change this.score is",this.score);// This score displayed correctly as a string on the console
                 this.score -= total;
+                // console.log("if count != 0 in buyLetter, after change this.score is",this.score);
+            }
+
+            if (this.score < 0) {
+                // console.log("score is less than zero; You lose!");
+                this.scoreDisplay.style.color = "red";
+                // insert call to gameOver(); yet to be written
             }
             this.totalDisplay.innerText = total;
-        this.scoreDisplay.innerText = this.score;
-        console.log("at the end of buyLetter, count is", count, " total is", total, "score is", this.score);
-        return this.score;
+            this.scoreDisplay.innerText = this.score;
+            // console.log("at end of buyLetter, this.scoreDisplay.innerText is ", this.scoreDisplay.innerText);
+        // console.log("at end of buyLetter, this.score is", this.score);
+
+        // push the bought letter into the solvedLetters array
+        this.solvedLetters.push(this.letter);
+        console.log(this.letter, this.solvedLetters);
+
+
+            // // reset letter to an empty string
+            // this.letter = null;
+
+        // console.log("at the end of buyLetter, count is", count, " total is", total, "score is", this.score);
+        console.log("buyLetter ends");
+
+        // // return this.score;
+        // return;
+        // replaced return statement with call to chooseAction;  
+        this.chooseAction();
     }
  
 
@@ -462,10 +696,14 @@ class Cryptoquote {
 // if the letters don't match, the scoreboard is cleared and the player is prompted to take another turn
 // the total is deducted from the score
     solveLetter(letter) {
+        console.log("solveLetter begins, letter is", this.letter);
+        if (action == "buy") {
+            return;
+        }
         // variables in score
         let total = 0;
         let count = 0;
-        console.log("At the beginning of the solveLetter function, count, total, and score =", count, total, this.score);
+        // console.log("At the beginning of the solveLetter function, count, total, and score =", count, total, this.score);
         
         confirmAction.innerText = "Choose quote tile";
         confirmAction.disabled = true;
@@ -474,7 +712,7 @@ class Cryptoquote {
         let valueIndex = this.alphabet.indexOf(this.letter);
         let letterValue = this.letterValues[valueIndex];
         let newLetter = this.cipher[valueIndex];
-        console.log("letterValue is ", letterValue);
+        // console.log("valueIndex is", valueIndex, "letterValue is ", letterValue, "newLetter is", newLetter);
 
         // variables indexed to the quotation
         // the indexArray will contain the indexes of all the letter instances in the quoteArray, and by extension, the cipherArray
@@ -483,7 +721,7 @@ class Cryptoquote {
         // variables linked to the DOM: alphabet and solution buttons by id, quotation and cipherQuote tiles by class name
         let alphabetTile = document.getElementById(this.alphabet[valueIndex]);
         let solutionTile = document.getElementById(this.alphabetLC[valueIndex]);
-        console.log(solutionTile);
+        console.log("solutionTile.innerText is", solutionTile.innerText);
         solutionTile.innerText = letterValue;
         // console.log(solutionTile.innerText);
 
@@ -544,39 +782,57 @@ class Cryptoquote {
                         solutionTile.innerText = newLetter;
                         solutionTile.style.color = "white";
                         solutionTile.style.backgroundColor = "#024402";
+
+                        // count is the number of instances of the letter in thw quotation
+                        // when letter is solve, the total earns the value of the letter
                         count = indexArray.length;
                         total = letterValue;
+
                         this.score = this.score + total;
                         this.countDisplay.innerText = count;
                         this.countDisplay.style.fontSize = "36px";
                         this.totalDisplay.innerText = total; 
+                        // console.log(this.scoreDisplay.innerText);
                         this.scoreDisplay.innerText = this.score;
                         // console.log("when letters in solveLetter match, total and score are", total, score);
                         // call changeQuoteTiles if letters match; they are changing too soon
                         this.changeQuoteTiles(this.letter); 
 
+                        // reset clickedTile to an empty string
+                        clickedTile = "";
+
+                        // // push the bought letter into the solvedLetters array
+                        // this.solvedLetters.push(this.letter);
+                        // console.log(i, this.solvedLetters);
+                        
                         // added a return statement to see if that keeps the color change for the tiles that have been solved
-                        return this.score;
+                        return;
 
     // added condition to try to keep the solution tiles from changing back when the next action occurs
                         } else if (clickedTile != letter) {
                             // console.log("inside solveLetter conditional clickedTile and letter do not match; don't change tiles", clickedTile, letter, letterValue);
-                            this.confirmAction.innerText = "No match";
+                            
+                            // reset alphabet and solution tiles to initial state
                             alphabetTile.style.color = "var(--footerColor)";
                             alphabetTile.style.backgroundColor = "rgb(238, 227, 198)";
                             solutionTile.style.color = "var(--footerColor)";
                             solutionTile.style.backgroundColor = "rgb(238, 227, 198)";
                             solutionTile.innerText = letterValue;
-                            this.confirmAction.innerText = "Choose action";
+
+                            // commented out the reset to the confirmAction button because it will return to chooseAction 
+                            // this.confirmAction.innerText = "Choose action";
                             this.countDisplay.style.fontSize = "20px";
                             this.countDisplay.innerText = "No match";
                             total = -(letterValue);
                             this.totalDisplay.innerText = total;
                             // check to see if the score correctly subtracts the value of the wrong letter choice
                             this.score +=  total;
+                            // console.log(this.scoreDisplay.innerText);
                             this.scoreDisplay.innerText = this.score;
+                            // need to reset clickedTile
+                            clickedTile = null;
                             // added a return statement to see if that keeps the color change for the tiles that have been solved
-                            return;
+                            return this.score;
                         }
                         // score = score + total;
                 })
@@ -610,6 +866,9 @@ class Cryptoquote {
 
         }
 
+
+        // I had commented out this for loop, but the count no longer displayed
+
         // put the loop inside the event listener for the quotation tiles, including changeQuoteTiles
         for (let i = 0; i < this.quoteArray.length; i++) {
             // moved this conditional to inside the first loop through the quoteArray
@@ -642,15 +901,20 @@ class Cryptoquote {
         // score = score + total;
         // count = indexArray.length;
         // countDisplay.innerText = count;
+        console.log(this.solvedLetters);
+        // console.log(this.scoreDisplay.innerText);
         this.scoreDisplay.innerText = this.score;
+        console.log("solveLetter ends");
         // console.log("at the end of solveLetter, total is", total, "score is", score, "total + score =", total + score);
-        return this.score;
-
+        // removed return and replace it with a call to chooseAction()
+        // return this.score;
+        this.chooseAction();
     }
  
     // The changeQuoteTiles method has some issues
     // The changeQuoteTiles method changes the display of the quotation and cipherQuote tiles on the gameboard when the letter is matched
-    changeQuoteTiles(letter) {        
+    changeQuoteTiles(letter) {    
+        console.log("changeQuoteTiles begins");    
         // console.log("changeQuoteTiles was triggered by last action");
         let quoteTiles = document.querySelectorAll('.quote-tile');
         let cipherTiles = document.querySelectorAll('.cipher-tile');
@@ -668,6 +932,7 @@ class Cryptoquote {
         }           
     
         // console.log("at the end of changeQuoteTiles, score is", score);
+        console.log("changeQuoteTiles ends"); 
     }
     
 
@@ -682,19 +947,18 @@ class Cryptoquote {
 
 // -----------------------------Code below this line is outside the class and may need to be moved, modified, or deleled
 // set initial score
+// console.log(this.scoreDisplay.innerText);
 this.scoreDisplay.innerText = this.score;
- 
-let newton1 = 'If I have seen further it is by standing on the shoulders of Giants.';
-// console.log(newton1);
 
+console.log("last line of code before start sequence is initiated");
 
 // Using Herb's screenshot as a model, I already had the start button; added the action and changed the event listener 
 let startButton = document.getElementById('startButton');
 let action = new Cryptoquote();
 // startButton.addEventListener('click', init); old event listener
-// startButton.addEventListener('click', ()=> {
+startButton.addEventListener('click', ()=> {
     action.init();
-// })
+})
  
 console.log('End');
 

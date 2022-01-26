@@ -151,8 +151,6 @@ h1 {
  
 .quotation-display {
     position: relative;
-    /* width: 1650px; */
-    /* height: auto;*/
     margin: 20px auto;
     padding: 12px;
     background-color: var(--quotationDisplayColor);
@@ -164,7 +162,6 @@ h1 {
 
 #quotationDisplay {
     position: relative;
-    /* width: 1650px; */
     height: auto;
     margin: 20px auto;
     padding: 12px;
@@ -172,7 +169,6 @@ h1 {
     font-size: 32px;
     font-family: var(--quotationFont);
     text-transform: uppercase;
-    /* border: 2px solid red; */
     border-radius: 10px;
 }
  
