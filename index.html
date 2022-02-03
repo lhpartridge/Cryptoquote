@@ -1,19 +1,5 @@
 <!-- 
-// Page load and other display settings
-// On init, the page settings are:
-    // Top header: only Rules, everything else d-none; display on level choice
-    // Header: display; d-none on game start
-    // quotationDisplayHome: display; d-none on game start
-    // quotatioDisplay: d-none; display on game start
-    // quotationDisplaySolution: d-none; display on game over
-    // homeMessage: display; d-none on game start
-    // scoreboard: d-none; display on game start
-    // levelButtonGroup: display; d-none on level click
-    // categoryButtonGroup: d-none; display on levelButtonGroup click; d-none on category click
-    // startGroup: display; initial d-none after functionality of level and category; display on category click or level click 
-    // actionButtonGroup: d-none; display on game start
-    // authorButtonGroup: d-none; display when solution is complete; 
-    // restartGroup: d-none; display on game over
+Cryptoquote Lorraine Partridge  A project for the 2021 cohort of the Mississippi Coding Academies
 
  -->
 <!DOCTYPE html>
@@ -33,7 +19,8 @@
                 <!--set subheaders to d-none until game starts-->
                 <h3 class="col-2 subheader rules-subheader" id="rulesSubheader">Rules</h3>
                 <h3 class="col-2 subheader home-subheader" id="home">Cryptoquote</h3>
-                <h3 class="col-2 subheader restart-subheader" id="restartSubheader">Restart</h3>
+                <a href="https://lhpartridge.github.io/Cryptoquote/" class="subheader-link"><h3 class="col-2 subheader restart-subheader" id="restartSubheader">Restart</h3></a>
+                
                 <h3 class="col-2 subheader level-subheader" id="levelSubheader">Level</h3>
                 <h3 class="col-2 subheader category-subheader" id="categorySubheader">Category</h3>
                 <h3 class="col-2 subheader timer-subheader" id="timerSubheader">Timer</h3>
@@ -117,10 +104,10 @@
 
                 <div class=" col-4 message home-message" id="homeMessage">
                     <p class="text message-text" id="home-message-text1">Solve the cipher!</p>
-                    <p class="text message-text" id="home-message-text2">Beat the clock!</p>
+                    <!-- <p class="text message-text" id="home-message-text2">Beat the clock!</p> -->
                     <p class="text message-text" id="home-message-text3">Reveal the quotation!</p>
-                    <p class="text message-text" id="home-message-text4">Bonus points:</p>
-                    <p class="text message-text" id="home-message-text5">Name the author!</p>
+                    <!-- <p class="text message-text" id="home-message-text4">Bonus points:</p>
+                    <p class="text message-text" id="home-message-text5">Name the author!</p> -->
                     <!-- <button class="btn start-button" id="startButton">Start game</button> -->
                 </div>
 
@@ -208,41 +195,47 @@
                             <!-- <div class="action-message" id="actionMessageDiv">
                                 <p class="action-button" id="actionMessage">Choose action</p>
                             </div> -->
-                            <button class="button btn action-button confirm-action " id="confirmAction">Confirm</button>              
-                            <button class="button btn action-button buy-button" id="buyButton">Buy a letter</button>
-                            <button class="button btn action-button solve-button" id="solveButton">Solve a letter</button>
+                            <span>
+                                <button class="button btn action-button confirm-action " id="confirmAction">Confirm</button>              
+                            </span>
+                            <span>
+                                <button class="button btn action-button buy-button" id="buyButton">Buy a letter</button>
+                            </span>
+                            <span>
+                                <button class="button btn action-button solve-button" id="solveButton">Solve a letter</button>
+                            </span>
                         </div>
  
                         <div class="row alphabet-row " id="alphabetRow">
                             <div class="col-12 alphabet-group" id="alphabetGroup">
             
                                 <div class="alphabet-grid alphabet-grid-1">
-                                    <button class="button btn letter default" id="A">a</button>
-                                    <button class="button btn letter default" id="B">b</button>
-                                    <button class="button btn letter default" id="C">c</button>
-                                    <button class="button btn letter default" id="D">d</button>
-                                    <button class="button btn letter default" id="E">e</button>
-                                    <button class="button btn letter default" id="F">f</button>
-                                    <button class="button btn letter default" id="G">g</button>
-                                    <button class="button btn letter default" id="H">h</button>
-                                    <button class="button btn letter default" id="I">i</button>
-                                    <button class="button btn letter default" id="J">j</button>
-                                    <button class="button btn letter default" id="K">k</button>
-                                    <button class="button btn letter default" id="L">l</button>
-                                    <button class="button btn letter default" id="M">m</button>
-                                    <button class="button btn letter default" id="N">n</button>
-                                    <button class="button btn letter default" id="O">o</button>
-                                    <button class="button btn letter default" id="P">p</button>
-                                    <button class="button btn letter default" id="Q">q</button>
-                                    <button class="button btn letter default" id="R">r</button>
-                                    <button class="button btn letter default" id="S">s</button>
-                                    <button class="button btn letter default" id="T">t</button>
-                                    <button class="button btn letter default" id="U">u</button>
-                                    <button class="button btn letter default" id="V">v</button>
-                                    <button class="button btn letter default" id="W">w</button>
-                                    <button class="button btn letter default" id="X">x</button>
-                                    <button class="button btn letter default" id="Y">y</button>
-                                    <button class="button btn letter default" id="Z">z</button>
+                                    <button class="button btn letter default alphabet-button" id="A">a</button>
+                                    <button class="button btn letter default alphabet-button" id="B">b</button>
+                                    <button class="button btn letter default alphabet-button" id="C">c</button>
+                                    <button class="button btn letter default alphabet-button" id="D">d</button>
+                                    <button class="button btn letter default alphabet-button" id="E">e</button>
+                                    <button class="button btn letter default alphabet-button" id="F">f</button>
+                                    <button class="button btn letter default alphabet-button" id="G">g</button>
+                                    <button class="button btn letter default alphabet-button" id="H">h</button>
+                                    <button class="button btn letter default alphabet-button" id="I">i</button>
+                                    <button class="button btn letter default alphabet-button" id="J">j</button>
+                                    <button class="button btn letter default alphabet-button" id="K">k</button>
+                                    <button class="button btn letter default alphabet-button" id="L">l</button>
+                                    <button class="button btn letter default alphabet-button" id="M">m</button>
+                                    <button class="button btn letter default alphabet-button" id="N">n</button>
+                                    <button class="button btn letter default alphabet-button" id="O">o</button>
+                                    <button class="button btn letter default alphabet-button" id="P">p</button>
+                                    <button class="button btn letter default alphabet-button" id="Q">q</button>
+                                    <button class="button btn letter default alphabet-button" id="R">r</button>
+                                    <button class="button btn letter default alphabet-button" id="S">s</button>
+                                    <button class="button btn letter default alphabet-button" id="T">t</button>
+                                    <button class="button btn letter default alphabet-button" id="U">u</button>
+                                    <button class="button btn letter default alphabet-button" id="V">v</button>
+                                    <button class="button btn letter default alphabet-button" id="W">w</button>
+                                    <button class="button btn letter default alphabet-button" id="X">x</button>
+                                    <button class="button btn letter default alphabet-button" id="Y">y</button>
+                                    <button class="button btn letter default alphabet-button" id="Z">z</button>
                                 </div>
                                 <div class="alphabet-grid alphabet-grid-solution">
                                     <button class="button btn letter solution" id="a">a</button>
@@ -289,7 +282,7 @@
                     <div class="col-12 restart-group d-none" id="restartGroup">
                         <div class="row button-group restart-group" id="restartRow">
                             <div class="col-3 win" id="win">You win!</div>
-                            <div class="col-3 lose d-none" id="lose">You lose!</div>
+                            <div class="col-3 lose" id="lose">You lose!</div>
                             <div class="col-3 final-score-header" id="finalScore">
                                 <p class="subheader score-header" id="finalScoreHeader">score</p>
                                 <p class="display score-display" id="finalScoreDisplay"></p>
